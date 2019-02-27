@@ -15,6 +15,17 @@ class Search extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  queryStringFromObject(obj) {
+    const objKeys = Object.keys(obj);
+    let queryString = '?';
+    for (let key of objKeys) {
+      if (obj[key]) {
+        queryString += `&${key}=${obj[key]}`;
+      }
+    }
+    return queryString;
+  }
+
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -22,20 +33,9 @@ class Search extends Component {
   handleSubmit(event) {
     event.preventDefault();
     if (this.validator.allValid()) {
-      if (!this.startDate) {
-        this.props.history.push(
-          `/search/${this.state.artistName}/after/1300-01-01/before/${
-            this.state.endDate
-          }`
-        );
-      } else {
-        this.props.history.push(
-          `/search/${this.state.artistName}/after/${
-            this.state.startDate
-          }/before/${this.state.endDate}`
-        );
-      }
-
+      this.props.history.push(
+        `/search${this.queryStringFromObject(this.state)}`
+      );
       this.setState({
         artistName: '',
         startDate: '',

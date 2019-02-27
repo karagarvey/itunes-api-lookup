@@ -11,15 +11,28 @@ class SearchResults extends Component {
     };
   }
 
+  objectFromQueryString(queryString) {
+    const queryTerms = queryString.slice(1).split('&');
+    const queryStrObject = {};
+    for (let term of queryTerms) {
+      if (term) {
+        const [key, value] = term.split('=');
+        queryStrObject[key] = value;
+      }
+    }
+    return queryStrObject;
+  }
+
   async iTunesQuery() {
+    const { artistName, startDate, endDate } = this.objectFromQueryString(
+      this.props.location.search
+    );
+
     const { data } = await axios.get(
-      `https://itunes.apple.com/search?media=music&entity=song&term=${
-        this.props.match.params.artistName
-      }`
+      `https://itunes.apple.com/search?media=music&entity=song&term=${artistName}`
     );
     let { results } = data;
-    const startDate = this.props.match.params.startDate;
-    const endDate = this.props.match.params.endDate;
+
     if (startDate) {
       results = results.filter(result => {
         const releaseDate = result.releaseDate.substring(0, 7);
@@ -32,8 +45,24 @@ class SearchResults extends Component {
         return releaseDate <= endDate;
       });
     }
-
-    this.setState({ results });
+    if (!results.length) {
+      let fullMessage = `Sorry, there are no results for ${artistName}`;
+      if (startDate && endDate) {
+        fullMessage += ` after ${startDate} and before ${endDate}`;
+      } else if (startDate) {
+        fullMessage += ` after ${startDate}`;
+      } else if (endDate) {
+        fullMessage += ` before ${endDate.substring(5, 7)}-${endDate.substring(
+          8,
+          10
+        )}-${endDate.substring(0, 4)}`;
+      }
+      this.setState({
+        results: fullMessage
+      });
+    } else {
+      this.setState({ results });
+    }
   }
 
   componentDidMount() {
@@ -41,7 +70,7 @@ class SearchResults extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params !== this.props.match.params) {
+    if (prevProps.location.search !== this.props.location.search) {
       this.iTunesQuery();
     }
   }
@@ -49,7 +78,9 @@ class SearchResults extends Component {
   render() {
     return (
       <div>
-        {this.state.results.length ? (
+        {typeof this.state.results === 'string' ? (
+          <div>{this.state.results}</div>
+        ) : this.state.results.length ? (
           this.state.results.map(result => (
             <SingleSong key={result.trackId} result={result} />
           ))
