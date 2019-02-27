@@ -54,51 +54,54 @@ class Search extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit} className="center">
-        <div>
-          <div>
-            <FormGroup>
-              <Label htmlFor="artistName">Artist Name:</Label>
-              <Input
-                onChange={this.handleChange}
-                value={this.state.artistName}
-                type="text"
-                name="artistName"
-              />
-              {this.validator.message(
-                'artistName',
-                this.state.artistName,
-                'required|alpha_num_space'
-              )}
-            </FormGroup>
+      <div>
+        <Form onSubmit={this.handleSubmit} className="center">
+          <div className="flex-row">
+            <div className="center">
+              <FormGroup>
+                <Label htmlFor="artistName">Artist Name:</Label>
+                <Input
+                  onChange={this.handleChange}
+                  value={this.state.artistName}
+                  type="text"
+                  name="artistName"
+                  className="artistNameField"
+                />
+                {this.validator.message(
+                  'artistName',
+                  this.state.artistName,
+                  'required|alpha_num_space'
+                )}
+              </FormGroup>
+            </div>
+            <div className="center">
+              <FormGroup>
+                <Label htmlFor="startDate">After: </Label>
+                <Input
+                  onChange={this.handleChange}
+                  value={this.state.startDate}
+                  type="date"
+                  name="startDate"
+                />
+              </FormGroup>
+            </div>
+            <div className="center">
+              <FormGroup>
+                <Label htmlFor="endDate">Before: </Label>
+                <Input
+                  onChange={this.handleChange}
+                  value={this.state.endDate}
+                  type="date"
+                  name="endDate"
+                />
+              </FormGroup>
+            </div>
+            <Button color="primary" className="button" type="submit">
+              Search
+            </Button>
           </div>
-          <div>
-            <FormGroup>
-              <Label htmlFor="startDate">After: </Label>
-              <Input
-                onChange={this.handleChange}
-                value={this.state.startDate}
-                type="date"
-                name="startDate"
-              />
-            </FormGroup>
-          </div>
-          <div>
-            <FormGroup>
-              <Label htmlFor="endDate">Before: </Label>
-              <Input
-                onChange={this.handleChange}
-                value={this.state.endDate}
-                type="date"
-                name="endDate"
-              />
-            </FormGroup>
-          </div>
-          <Button className="button" type="submit">
-            Search
-          </Button>
-        </div>
-      </Form>
+        </Form>
+      </div>
     );
   }
 }

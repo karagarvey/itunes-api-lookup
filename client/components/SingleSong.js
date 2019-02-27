@@ -10,7 +10,9 @@ export default function SingleSong(props) {
     <Card className="flex-item card center">
       <CardImg src={artworkUrl100} />
       <CardTitle className="card-text center">{trackName}</CardTitle>
-      <CardSubtitle className="center">{`Released\n${releaseMonth}-${releaseDay}-${releaseYear}`}</CardSubtitle>
+      <CardSubtitle className="center">
+        Released <div> {`${releaseMonth}-${releaseDay}-${releaseYear}`} </div>
+      </CardSubtitle>
 
       <div>
         <Button target="blank" href={previewUrl}>

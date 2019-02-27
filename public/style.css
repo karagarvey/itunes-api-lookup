@@ -12,6 +12,10 @@
   margin: 10px;
 }
 
+form {
+  max-height: 10em;
+}
+
 form div {
   margin: 1em;
   display: inline-block;
@@ -34,9 +38,24 @@ form div {
 }
 
 .button {
-  background: #e8e8e8;
+  vertical-align: middle;
+  height: 40px;
+  margin-top: 47px;
 }
 
 .center {
   text-align: center;
+  vertical-align: top;
+}
+
+.artistNameField {
+  min-width: 425px;
+}
+
+.flex-row {
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  height: 120px;
+  flex-wrap: wrap;
 }
