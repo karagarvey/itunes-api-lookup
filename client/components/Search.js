@@ -19,12 +19,9 @@ class Search extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  async handleSubmit(event) {
-    console.log('in handleSubmit');
+  handleSubmit(event) {
     event.preventDefault();
-    console.log('this.validator.allValid()', this.validator.allValid());
     if (this.validator.allValid()) {
-      console.log('all valid', this.props.history);
       if (!this.startDate) {
         this.props.history.push(
           `/search/${this.state.artistName}/after/1300-01-01/before/${
@@ -39,14 +36,13 @@ class Search extends Component {
         );
       }
 
-      await this.setState({
+      this.setState({
         artistName: '',
         startDate: '',
         endDate: ''
       });
       this.validator.messagesShown = false;
     } else {
-      console.log('this.validator.allValid()2', this.validator.allValid());
       this.validator.showMessages();
       this.forceUpdate();
     }
