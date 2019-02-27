@@ -18,8 +18,11 @@ class Search extends Component {
   queryStringFromObject(obj) {
     const objKeys = Object.keys(obj);
     let queryString = '?';
-    for (let key of objKeys) {
-      if (obj[key]) {
+    for (let i = 0; i < objKeys.length; i++) {
+      let key = objKeys[i];
+      if (i === 0 && obj[key]) {
+        queryString += `${key}=${obj[key]}`;
+      } else if (obj[key]) {
         queryString += `&${key}=${obj[key]}`;
       }
     }
