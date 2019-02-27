@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import SingleSong from './SingleSong';
-import Spinner from './Spinner';
+import { SingleSong, Spinner } from '../components';
 import axios from 'axios';
 
 class SearchResults extends Component {
@@ -77,7 +76,7 @@ class SearchResults extends Component {
 
   render() {
     return (
-      <div>
+      <div className="resultsList">
         {typeof this.state.results === 'string' ? (
           <div>{this.state.results}</div>
         ) : this.state.results.length ? (

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import SimpleReactValidator from 'simple-react-validator';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 class Search extends Component {
   constructor(props) {
@@ -53,45 +54,51 @@ class Search extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit} className="center">
         <div>
-          <label htmlFor="artistName">Artist Name:</label>
-          <input
-            onChange={this.handleChange}
-            value={this.state.artistName}
-            type="text"
-            name="artistName"
-          />
-          {this.validator.message(
-            'artistName',
-            this.state.artistName,
-            'required|alpha_num_space'
-          )}
-
-          <br />
-          <label htmlFor="startDate">After: </label>
-          <input
-            onChange={this.handleChange}
-            value={this.state.startDate}
-            type="date"
-            name="startDate"
-          />
-          <br />
-          <label htmlFor="endDate">Before: </label>
-          <input
-            onChange={this.handleChange}
-            value={this.state.endDate}
-            type="date"
-            name="endDate"
-          />
-          <br />
-          <span>
-            <div>
-              <button type="submit">Search</button>
-            </div>
-          </span>
+          <div>
+            <FormGroup>
+              <Label htmlFor="artistName">Artist Name:</Label>
+              <Input
+                onChange={this.handleChange}
+                value={this.state.artistName}
+                type="text"
+                name="artistName"
+              />
+              {this.validator.message(
+                'artistName',
+                this.state.artistName,
+                'required|alpha_num_space'
+              )}
+            </FormGroup>
+          </div>
+          <div>
+            <FormGroup>
+              <Label htmlFor="startDate">After: </Label>
+              <Input
+                onChange={this.handleChange}
+                value={this.state.startDate}
+                type="date"
+                name="startDate"
+              />
+            </FormGroup>
+          </div>
+          <div>
+            <FormGroup>
+              <Label htmlFor="endDate">Before: </Label>
+              <Input
+                onChange={this.handleChange}
+                value={this.state.endDate}
+                type="date"
+                name="endDate"
+              />
+            </FormGroup>
+          </div>
+          <Button className="button" type="submit">
+            Search
+          </Button>
         </div>
-      </form>
+      </Form>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Search, SearchResults, PageNotFound } from './components';
+import { SearchResults, PageNotFound } from './components';
 
 class Routes extends Component {
   render() {

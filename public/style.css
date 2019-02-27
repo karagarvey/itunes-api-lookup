@@ -1,0 +1,40 @@
+.resultsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex-item {
+  padding: 25px;
+  border-width: 1px;
+  border-style: inset;
+  border-color: grey;
+  margin: 10px;
+}
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+.background-color {
+  background: #e8e8e8;
+}
+
+.card {
+  max-width: 12em;
+  overflow: hidden;
+}
+
+.card-text {
+  word-wrap: break-word;
+}
+
+.button {
+  background: #e8e8e8;
+}
+
+.center {
+  margin: 3em;
+  text-align: center;
+}
