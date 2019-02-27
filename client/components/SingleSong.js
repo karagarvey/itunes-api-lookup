@@ -7,7 +7,6 @@ export default function SingleSong(props) {
   const releaseYear = releaseDate.substring(0, 4);
   return (
     <div>
-      {/* {console.log('aa', props.match.params)} */}
       <img src={artworkUrl100} />
       <p>{trackName}</p>
       <p>{`${releaseMonth}-${releaseDay}-${releaseYear}`}</p>

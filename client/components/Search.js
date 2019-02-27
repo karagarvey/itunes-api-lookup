@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class Search extends Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class Search extends Component {
   }
 
   componentDidMount() {
+    console.log('this.state22', this.state);
     this.setState({ warningMessage: 'Field is required!' });
   }
 
@@ -30,7 +31,20 @@ class Search extends Component {
   async handleSubmit(event) {
     console.log('b', this.state);
     event.preventDefault();
-    this.props.history.push(`/search/${this.state.artistName}`);
+    if (!this.startDate) {
+      this.props.history.push(
+        `/search/${this.state.artistName}/after/1300-01-01/before/${
+          this.state.endDate
+        }`
+      );
+    } else {
+      this.props.history.push(
+        `/search/${this.state.artistName}/after/${
+          this.state.startDate
+        }/before/${this.state.endDate}`
+      );
+    }
+
     await this.setState({
       artistName: '',
       startDate: '',
@@ -56,19 +70,19 @@ class Search extends Component {
             name="artistName"
           />
           <br />
-          <label htmlFor="startDate">Start Date: </label>
+          <label htmlFor="startDate">After: </label>
           <input
             onChange={this.handleChange}
             value={this.state.startDate}
-            type="text"
+            type="date"
             name="startDate"
           />
           <br />
-          <label htmlFor="endDate">End Date: </label>
+          <label htmlFor="endDate">Before: </label>
           <input
             onChange={this.handleChange}
             value={this.state.endDate}
-            type="text"
+            type="date"
             name="endDate"
           />
           <br />

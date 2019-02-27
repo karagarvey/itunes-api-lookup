@@ -19,19 +19,35 @@ class SearchResults extends Component {
         this.props.match.params.artistName
       }`
     );
-    const { results } = data;
-    console.log('results', results);
+    let { results } = data;
+    const startDate = this.props.match.params.startDate;
+    const endDate = this.props.match.params.endDate;
+    console.log('results before filter', results);
+    if (startDate) {
+      results = results.filter(result => {
+        const releaseDate = result.releaseDate.substring(0, 7);
+        console.log('releaseDate', releaseDate);
+        console.log('this.startDate', startDate);
+        return releaseDate >= startDate;
+      });
+    }
+    if (endDate) {
+      results = results.filter(result => {
+        const releaseDate = result.releaseDate.substring(0, 7);
+        console.log('releaseDate', releaseDate);
+        console.log('this.endDate', endDate);
+        return releaseDate <= endDate;
+      });
+    }
+    console.log('results after filter', results);
+
     this.setState({ results });
   }
 
   componentDidMount() {
     console.log('param', this.props.match.params);
     console.log('componentDidMount');
-
     this.iTunesQuery();
-    // const artistName = this.props.match.params.artistName;
-    // const startDate = this.props.match.params.startDate;
-    // const endDate = this.props.match.params.endDate;
   }
 
   componentDidUpdate(prevProps) {

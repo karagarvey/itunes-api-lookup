@@ -6,7 +6,11 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/search/:artistName" component={SearchResults} />;
+        <Route
+          path="/search/:artistName/after/:startDate?/before/:endDate?"
+          component={SearchResults}
+        />
+        ;
       </Switch>
     );
   }
