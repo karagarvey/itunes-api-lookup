@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - node
+dist: trusty
+sudo: false
+notifications:
+  email:
+    on_success: change
+    on_failure: always
+install:
+  - npm ci
+
+before_deploy:
+  - npm run build-client
+  - rm -rf node_modules
+deploy:
+  skip_cleanup: true
+  provider: heroku
+  app: itunes-api-lookup
+  api_key:
+    secure: XFruCZ6ShuvC0HvwzUbOvCaxh9V9Q7lbH4Ftiz5J671xH4ihXOg2+Ayhjo+1j7w3yI9SNHl/clG/+0NnyEbBaAUfYS6M+/CKHaaOh9LpZY+47JgSZ8k7PWWKMmPzlok6xA6Xe5UiF76Yb/00PXZkA17pILEhFzPHwrltJIyr3m243NRsbtXrgLqqOSOPeDPWBATDmC+t1syryheoNat6uQ721+JOimO9YM7Lk1gVnTQRqkOsGHlp/Th+kfMMFHaOXhQDm+uHIkQ61ipk3doIwent3j8pHOoeAuWtsWpVj9A36iNG64QYvYNL4+fRqu+YZWtUQFnye63SpYqpeOHXb2e12TAEyGFH4udD0EKOWx39jzkqwj9qheOFlr210g0Bs3iegMVTm9qsQNOY+13AXVq70xFYnl/X4luur0siPmmMU15d25MB6tDN8KCVF4jT84RsJgTEf6hdLaAX8u48JdF8h19qxeWTglvUObVqllHX998uxlSid113SyvBid3zbNYJ3SROvlsaiBNui1YtGRPAtEz0t9iEQrEhE4Jlndl+hLAbDWvOrRSRUtsKiIMyp6sBMknkPXyyj/BTCe3WFKOqvuo0hVvCDl3scoLiNpNRs/I+gFyYwNkgwgybLaQHEiZC+0dUrWGSGJQgmgse9AR3+QyrUssAcrobvYHngDo=
