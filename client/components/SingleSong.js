@@ -7,10 +7,14 @@ export default function SingleSong(props) {
   const releaseDay = releaseDate.substring(8, 10);
   const releaseYear = releaseDate.substring(0, 4);
   return (
-    <Card className="flex-item card">
+    <Card className="flex-item card center">
       <CardImg src={artworkUrl100} />
-      <CardTitle className="card-text">{trackName}</CardTitle>
-      <CardSubtitle>{`${releaseMonth}-${releaseDay}-${releaseYear}`}</CardSubtitle>
+      {/* <br />
+      <br /> */}
+      <CardTitle className="card-text center">{trackName}</CardTitle>
+      {/* <br /> */}
+      <CardSubtitle className="center">{`Released\n${releaseMonth}-${releaseDay}-${releaseYear}`}</CardSubtitle>
+
       <div>
         <Button target="blank" href={previewUrl}>
           Listen now!

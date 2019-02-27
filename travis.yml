@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - node
+services:
+addons:
+
 dist: trusty
 sudo: false
 notifications:
@@ -9,6 +12,7 @@ notifications:
     on_failure: always
 install:
   - npm ci
+before_script:
 
 before_deploy:
   - npm run build-client

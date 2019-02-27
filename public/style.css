@@ -22,12 +22,15 @@ form div {
 }
 
 .card {
-  max-width: 12em;
+  max-width: 14em;
   overflow: hidden;
 }
 
 .card-text {
+  margin: 1em;
+
   word-wrap: break-word;
+  font-weight: bold;
 }
 
 .button {
@@ -35,6 +38,5 @@ form div {
 }
 
 .center {
-  margin: 3em;
   text-align: center;
 }
