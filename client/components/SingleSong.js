@@ -9,10 +9,7 @@ export default function SingleSong(props) {
   return (
     <Card className="flex-item card center">
       <CardImg src={artworkUrl100} />
-      {/* <br />
-      <br /> */}
       <CardTitle className="card-text center">{trackName}</CardTitle>
-      {/* <br /> */}
       <CardSubtitle className="center">{`Released\n${releaseMonth}-${releaseDay}-${releaseYear}`}</CardSubtitle>
 
       <div>
