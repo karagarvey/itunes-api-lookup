@@ -27,6 +27,10 @@ class SearchResults extends Component {
       this.props.location.search
     );
 
+    if (!artistName) {
+      return;
+    }
+
     const { data } = await axios.get(
       `https://itunes.apple.com/search?media=music&entity=song&term=${artistName}`
     );

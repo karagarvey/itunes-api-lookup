@@ -12,10 +12,6 @@
   margin: 10px;
 }
 
-form {
-  max-height: 10em;
-}
-
 form div {
   margin: 1em;
   display: inline-block;
@@ -56,6 +52,6 @@ form div {
   display: flex;
   align-items: top;
   justify-content: center;
-  height: 120px;
+  min-height: 165px;
   flex-wrap: wrap;
 }
