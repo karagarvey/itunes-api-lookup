@@ -24,32 +24,22 @@ class SearchResults extends Component {
   }
 
   async iTunesQuery() {
-    console.log('itunes query running');
     this.setState({ loading: true });
     const { artistName, startDate, endDate } = this.objectFromQueryString(
       this.props.location.search
     );
 
-    console.log('artistnMW', artistName, startDate, endDate);
-
     if (!artistName) {
-      console.log('no artist name!');
-      this.setState(
-        {
-          results: 'Please enter an artist name to search',
-          loading: false
-        },
-        () => console.log('state set after no artist name')
-      );
+      this.setState({
+        results: 'Please enter an artist name to search',
+        loading: false
+      });
       return;
     }
 
-    console.log('about to await axios call');
     const { data } = await axios.get(
       `https://itunes.apple.com/search?media=music&entity=song&term=${artistName}`
     );
-
-    console.log('axios call returned!!!!', data);
     let { results } = data;
 
     if (startDate) {
@@ -65,7 +55,6 @@ class SearchResults extends Component {
       });
     }
     if (!results.length) {
-      console.log('no results!');
       let fullMessage = `Sorry, there are no results for ${artistName}`;
       if (startDate && endDate) {
         fullMessage += ` after ${startDate} and before ${endDate}`;
@@ -77,36 +66,26 @@ class SearchResults extends Component {
           10
         )}-${endDate.substring(0, 4)}`;
       }
-      this.setState(
-        {
-          results: fullMessage,
-          loading: false
-        },
-        () => console.log('set state after no results')
-      );
+      this.setState({
+        results: fullMessage,
+        loading: false
+      });
     } else {
-      console.log('results!');
-      this.setState({ results, loading: false }, () =>
-        console.log('set state after results')
-      );
+      this.setState({ results, loading: false });
     }
   }
 
   componentDidMount() {
-    console.log('component did mount');
     this.iTunesQuery();
   }
 
   componentDidUpdate(prevProps) {
-    console.log('component did UPDATE');
     if (prevProps.location.search !== this.props.location.search) {
-      console.log('search query changed, about to hit api');
       this.iTunesQuery();
     }
   }
 
   render() {
-    console.log('in render, loading is:', this.state.loading);
     if (this.state.loading) {
       return (
         <div className="resultsList">
