@@ -41,9 +41,9 @@ class SearchResults extends Component {
       const { data } = await axios.get(
         `https://itunes.apple.com/search?media=music&entity=song&attribute=artistTerm&term=${artistName}`
       );
-      console.log('data', data);
       results = data.results;
     } catch (err) {
+      console.error(err);
       results =
         'Looks like there was an error with the iTunes API, try your search again!';
     }
