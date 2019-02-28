@@ -38,7 +38,7 @@ class SearchResults extends Component {
     }
 
     const { data } = await axios.get(
-      `https://itunes.apple.com/search?media=music&entity=song&term=${artistName}`
+      `https://itunes.apple.com/search?media=music&entity=song&tattribute=artistTerm&term=${artistName}`
     );
     let { results } = data;
 
