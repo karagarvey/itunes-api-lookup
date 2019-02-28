@@ -6,7 +6,8 @@ class SearchResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      results: []
+      results: [],
+      loading: true
     };
   }
 
@@ -23,11 +24,16 @@ class SearchResults extends Component {
   }
 
   async iTunesQuery() {
+    this.setState({ loading: true });
     const { artistName, startDate, endDate } = this.objectFromQueryString(
       this.props.location.search
     );
 
     if (!artistName) {
+      this.setState({
+        results: 'Please enter an artist name to search',
+        loading: false
+      });
       return;
     }
 
@@ -61,10 +67,11 @@ class SearchResults extends Component {
         )}-${endDate.substring(0, 4)}`;
       }
       this.setState({
-        results: fullMessage
+        results: fullMessage,
+        loading: false
       });
     } else {
-      this.setState({ results });
+      this.setState({ results, loading: false });
     }
   }
 
@@ -79,16 +86,22 @@ class SearchResults extends Component {
   }
 
   render() {
+    if (this.state.loading) {
+      return (
+        <div className="resultsList">
+          <Spinner className="center" />
+        </div>
+      );
+    }
+
     return (
       <div className="resultsList">
         {typeof this.state.results === 'string' ? (
           <div>{this.state.results}</div>
-        ) : this.state.results.length ? (
+        ) : (
           this.state.results.map(result => (
             <SingleSong key={result.trackId} result={result} />
           ))
-        ) : (
-          <Spinner />
         )}
       </div>
     );
