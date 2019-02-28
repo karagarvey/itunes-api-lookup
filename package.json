@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"no test specified\"",
     "build-client": "webpack",
-    "start-dev": "webpack -w & nodemon server --watch server"
+    "start-dev": "webpack -w & nodemon server --watch server",
+    "start": "node server"
   },
   "author": "",
   "license": "ISC",
