@@ -36,11 +36,17 @@ class SearchResults extends Component {
       });
       return;
     }
-
-    const { data } = await axios.get(
-      `https://itunes.apple.com/search?media=music&entity=song&tattribute=artistTerm&term=${artistName}`
-    );
-    let { results } = data;
+    let results;
+    try {
+      const { data } = await axios.get(
+        `https://itunes.apple.com/search?media=music&entity=song&attribute=artistTerm&term=${artistName}`
+      );
+      console.log('data', data);
+      results = data.results;
+    } catch (err) {
+      results =
+        'Looks like there was an error with the iTunes API, try your search again!';
+    }
 
     if (startDate) {
       results = results.filter(result => {
