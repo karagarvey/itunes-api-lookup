@@ -1,3 +1,5 @@
+Check it out at: https://itunes-api-lookup.herokuapp.com
+
 How to run the program locally:
 
 1. Download this folder from github
