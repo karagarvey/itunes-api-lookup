@@ -9,6 +9,6 @@ How to run the program locally:
 npm install && npm start-dev
 ```
 
-3. Navigate you browser to http://localhost:8080
+3. Navigate your browser to http://localhost:8080
 
 Enjoy!
